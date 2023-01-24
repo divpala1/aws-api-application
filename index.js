@@ -16,9 +16,9 @@ app.listen(PORT, () => {
 // Connecting to the AWS RDS Database
 var connection = mysql.createConnection({
     host: 'techwondoe-db.cakvucmglvhb.us-east-1.rds.amazonaws.com',
-    port: '3306',
+    port: 'PORT',
     user: 'admin',
-    password: 'admin123',
+    password: 'PASSWORD',
     database: 'my_db'
 });
 
