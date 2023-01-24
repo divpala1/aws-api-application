@@ -5,7 +5,7 @@ import boto3
 def lambda_handler(event, context):
     arr = []
     s3 = boto3.client('s3')
-    s3BucketName = 'techwondoe-task-bucket'
+    s3BucketName = 'BUCKET_NAME'
     key = event['Records'][0]['s3']['object']['key']
     obj = s3.get_object(Bucket=s3BucketName, Key=key)
     data = obj['Body'].read().decode('utf-8').splitlines()
@@ -30,9 +30,10 @@ def lambda_handler(event, context):
         jsonData = {
             "entries" : arr[i:i+1000]
         }
-
+        
+        # API deployment is paused currently, hence won't work.
         url = 'https://techwondoe-deployed-api.ue.r.appspot.com/upload'
 
-        r = requests.post(url, json=jsonData)
+        r = requests.post(url, json=jsonData, key=API_KEY)
         
         print(r.status_code)
